@@ -1,7 +1,11 @@
 import os
 
+
 class Settings:
-    application_name = os.getenv("APP_NAME", 'Car Insurance API')
+    application_name = os.getenv("APP_NAME", "Car Insurance API")
+    application_discription = os.getenv(
+        "APP_DISTRIPTION", "Car Insurance Premium Simulator API"
+    )
 
     rate_per_year = float(os.getenv("RATE_PER_YEAR", 0.005))
     rate_per_value_step = float(os.getenv("RATE_PER_VALUE_STEP", 0.005))

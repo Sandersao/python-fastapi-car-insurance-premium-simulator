@@ -1,5 +1,4 @@
-from datetime import datetime
-
+from app.application.dto.car_output_dto import CarOutputDTO
 from app.application.dto.input_dto import InputDTO
 from app.application.dto.output_dto import OutputDTO
 from app.domain.services.premium_calculator import PremiumCalculator
@@ -20,11 +19,9 @@ class CalculatePremiumUseCase:
 
     def execute(self, input_dto: InputDTO) -> OutputDTO:
         car = input_dto.car
-        current_year = datetime.now().year
-        car_age = current_year - car.year
 
         rate = self.calculator.calculate_rate(
-            car_age=car_age,
+            car_year=car.year,
             car_value=car.value,
         )
 
@@ -42,8 +39,9 @@ class CalculatePremiumUseCase:
         )
 
         return OutputDTO(
-            applied_rate=result["applied_rate"],
-            calculated_premium=result["calculated_premium"],
-            deductible_value=result["deductible_value"],
-            policy_limit=result["policy_limit"],
+            car=CarOutputDTO(**input_dto.car.model_dump()),
+            applied_rate=result.applied_rate,
+            calculated_premium=result.calculated_premium,
+            deductible_value=result.deductible_value,
+            policy_limit=result.policy_limit,
         )
