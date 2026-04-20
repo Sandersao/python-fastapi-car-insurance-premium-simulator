@@ -42,7 +42,7 @@ def test_simulate_expected_values():
     assert round(data["calculated_premium"], 2) > 0
 
 
-def test_simulate_expected_values_():
+def test_simulate_expected_values_registration_location():
     payload = {
         "car": {
             "make": "Toyota",
