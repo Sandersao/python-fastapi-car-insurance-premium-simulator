@@ -2,7 +2,9 @@ from app.application.dto.car_output_dto import CarOutputDTO
 from app.application.dto.input_dto import InputDTO
 from app.application.dto.output_dto import OutputDTO
 from app.domain.services.premium_calculator import PremiumCalculator
-from app.infrastructure.config.settings import Settings
+from app.infrastructure.config.premium_calculator_settings import (
+    PremiumCalculatorSettings,
+)
 from app.infrastructure.gis.gis_service import GISService
 
 
@@ -10,11 +12,15 @@ class CalculatePremiumUseCase:
     def __init__(
         self,
         calculator: PremiumCalculator | None = None,
-        config: Settings | None = None,
+        premium_calculator_config: PremiumCalculatorSettings | None = None,
         gis_service: GISService | None = None,
     ):
-        self.config = config or Settings()
-        self.calculator = calculator or PremiumCalculator(self.config)
+        self.premium_calculator_config = (
+            premium_calculator_config or PremiumCalculatorSettings()
+        )
+        self.calculator = calculator or PremiumCalculator(
+            self.premium_calculator_config
+        )
         self.gis_service = gis_service or GISService()
 
     def execute(self, input_dto: InputDTO) -> OutputDTO:
