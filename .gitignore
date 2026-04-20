@@ -2,3 +2,4 @@
 milestones.md
 __pycache__/
 *.pyc
+.coverage
