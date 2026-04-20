@@ -3,3 +3,6 @@ dev:
 
 test:
 	docker compose -f docker-compose.test.yml up --build --abort-on-container-exit --exit-code-from api
+
+prod:
+	docker compose -f docker-compose.yml -f docker-compose.prod.yml up

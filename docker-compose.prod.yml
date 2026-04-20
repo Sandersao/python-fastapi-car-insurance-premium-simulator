@@ -1,0 +1,10 @@
+services:
+  api:
+    environment:
+      - ENVIRONMENT=prod
+    command: >
+      gunicorn app.main:app
+      --worker-class uvicorn.workers.UvicornWorker
+      --workers 4
+      --host 0.0.0.0
+      --port 8000
