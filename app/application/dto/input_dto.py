@@ -6,10 +6,14 @@ from app.application.dto.car_input_dto import CarInputDTO
 
 
 class InputDTO(BaseModel):
-    broker_fee: float = Field(..., ge=0, example=50.0)
+    broker_fee: float = Field(..., ge=0, json_schema_extra={"example": 50.0})
     car: CarInputDTO
-    deductible_percentage: float = Field(..., ge=0, le=1, example=0.10)
-    registration_location: Optional[str] = Field(None, example="São Paulo, Brazil")
+    deductible_percentage: float = Field(
+        ..., ge=0, le=1, json_schema_extra={"example": 0.10}
+    )
+    registration_location: Optional[str] = Field(
+        None, json_schema_extra={"example": "São Paulo, Brazil"}
+    )
 
     @field_validator("deductible_percentage")
     @classmethod
