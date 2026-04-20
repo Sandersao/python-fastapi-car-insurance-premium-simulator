@@ -1,3 +1,9 @@
+[project]
+name = "car-insurance-api"
+version = "0.1.0"
+description = "Car insurance premium simulator"
+requires-python = ">=3.13"
+
 [tool.ruff]
 line-length = 88
 target-version = "py311"
