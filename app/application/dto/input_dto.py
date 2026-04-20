@@ -1,6 +1,6 @@
 from typing import Optional
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field
 
 from app.application.dto.car_input_dto import CarInputDTO
 
@@ -14,10 +14,3 @@ class InputDTO(BaseModel):
     registration_location: Optional[str] = Field(
         None, json_schema_extra={"example": "São Paulo, Brazil"}
     )
-
-    @field_validator("deductible_percentage")
-    @classmethod
-    def validate_deductible(cls, value: float) -> float:
-        if value > 1:
-            raise ValueError("Deductible percentage must be between 0 and 1")
-        return value
