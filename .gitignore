@@ -1,5 +1,11 @@
-.env
+# Control files
 milestones.md
+
+# Env
+.env
+
+# Trash removal
 __pycache__/
 *.pyc
 .coverage
+*.egg-info/
